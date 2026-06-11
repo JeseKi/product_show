@@ -1,51 +1,49 @@
-import { Avatar, Button, Dropdown, Flex, Tag, Typography } from 'antd'
-import { LogIn, LogOut, MessageCircle, Package, ShieldCheck, ShoppingBag, Sparkles, User, Utensils } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../hooks/useAuth'
+import { Tag } from 'antd'
+import { MessageCircle, Package, ShieldCheck, Sparkles, Utensils } from 'lucide-react'
 
 const qrCodeUrl = 'https://fstc.kispace.cc/i/ec2458d7f65f16141b1c478aadc45da3.jpg'
 
 const imageUrls = {
-  hero: 'https://fstc.kispace.cc/i/3ba5cc6dd53dbe95d7264add0277f7b8.jpg',
-  teaPackage: 'https://fstc.kispace.cc/i/0eea13eee7db9041eadb34af7f3619fe.jpg',
-  teaOuterPackage: 'https://fstc.kispace.cc/i/3393d0b2d1331794f029931012f93fb2.jpg',
-  powderPackage: 'https://fstc.kispace.cc/i/ec4bfaebc17502c8e910958f5117774e.jpg',
-  powderJar: 'https://fstc.kispace.cc/i/f540faab1dbbfcc050c40cc8783c10d4.jpg',
-  slimKit: 'https://fstc.kispace.cc/i/7ad2e18d0ce4f4e55415087151d18c83.jpg',
-  slimTea: 'https://fstc.kispace.cc/i/a96e7d213f82aacfad896e4e8647bbb1.jpg',
-  hairKit: 'https://fstc.kispace.cc/i/56d6836173357019c18f84a2115131b6.jpg',
-  hairProduct: 'https://fstc.kispace.cc/i/8b2865d2ca4702ca41f0078fa1fb118f.jpg',
-  sleepKit: 'https://fstc.kispace.cc/i/f93fa51d5f819453a715f6ad560ccb68.jpg',
-  sleepProduct: 'https://fstc.kispace.cc/i/dd49fa36adfa0a200b9bb3126b55f0a3.jpg',
-  tonicPaste: 'https://fstc.kispace.cc/i/55b97d2e198e1f01e97f9a88fda5c88e.jpg',
-  powderBottle: 'https://fstc.kispace.cc/i/b3da5b437cb41f07b022e10185268cb4.jpg',
-  powderDetail: 'https://fstc.kispace.cc/i/e07699da36cd8ca1c548f3c3d0c8399a.jpg',
+  hero: 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_475fd8626a9a4629921da974d5651158_%E8%8C%B6%E5%8C%85__452ae03f6db3b2cd327f7f6e4f03446f.jpg',
+  teaPackage: 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_c8b999553edc43dd8e610e083b040844_%E4%BA%A7%E5%93%81%E5%9B%BE%E5%88%B6%E4%BD%9C__%E8%8C%B6%E5%8C%85__%E8%8C%B6%E5%8C%85.jpg',
+  teaOuterPackage: 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_e8dde1d2490c4df29abbc8fbbd6b0820_%E4%BA%A7%E5%93%81%E5%9B%BE%E5%88%B6%E4%BD%9C__%E8%8C%B6%E5%8C%85__%E8%8C%B6%E5%8C%85%E5%A4%96%E5%8C%85%E8%A3%85.jpg',
+  powderPackage: 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_d233e7da89174d0eaef6a5ef878d75d6_%E4%BA%A7%E5%93%81%E5%9B%BE%E5%88%B6%E4%BD%9C__%E6%89%8B%E5%B7%A5%E5%85%BB%E7%94%9F%E7%B2%89__%E5%85%BB%E7%94%9F%E7%B2%89%E5%8C%85%E8%A3%85.jpg',
+  powderJar: 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_91758c0cf8dc4f9b813a46c19254bdba_%E4%BA%A7%E5%93%81%E5%9B%BE%E5%88%B6%E4%BD%9C__%E6%89%8B%E5%B7%A5%E5%85%BB%E7%94%9F%E7%B2%89__70f10249-0acb-4d89-aeb7-08be338ce853.jpg',
+  slimKit: 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_6c8c0fc68b2747eb94d3cd9d440e7b0c_%E5%87%8F%E8%84%82%E5%A5%97%E9%A4%90__27cd03684e5e3102c88f071ad20aa25e.jpg',
+  slimTea: 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_30cadc3bd751437a82e0758247dc4362_%E8%8C%B6%E5%8C%85__%E7%A7%81%E4%BA%BA%E5%AE%9A%E5%88%B6%E7%BA%A4%E7%BA%A4%E9%A5%AE.jpg',
+  hairKit: 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_b73bbbb96d60491d8fbf9ae631425e0f_%E4%B9%8C%E5%8F%91%E7%94%9F%E5%8F%91%E5%A5%97%E9%A4%90__c8cd4bb20ee0764f95a0d3eeef3f2f9f.jpg',
+  hairProduct: 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_a1ea1e3393dd407fbe72c8b75098391b_%E4%B9%8C%E5%8F%91%E7%94%9F%E5%8F%91%E5%A5%97%E9%A4%90__b9405f7758dcbd675a40f880526b8091.jpg',
+  sleepKit: 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_86a296f9af9d453db978a098f61ea6b7_%E7%9D%A1%E7%9C%A0%E5%A5%97%E9%A4%90__5ffd99634adce7e768b635d8aca86703.jpg',
+  sleepProduct: 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_166870b0de4342a194af6732ceb17533_%E7%9D%A1%E7%9C%A0%E5%A5%97%E9%A4%90__e74fcbe737a93d30edca82f0a22a8f5e.jpg',
+  tonicPaste: 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_fdb10fdd03a64131a4f1ac773495ae13_%E5%85%BB%E7%94%9F%E7%B2%89%EF%BC%8C%E8%86%8F%E6%96%B9__b68cbdeff5e145f55812d0cd66a3da2d.jpg',
+  powderBottle: 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_37f94d38594b4db5a5bf024e565773f9_%E5%85%BB%E7%94%9F%E7%B2%89%EF%BC%8C%E8%86%8F%E6%96%B9__53197417bc5a54f5bce8cfbf78f78f0c.jpg',
+  powderDetail: 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_9967d56e2a6146e0b3598fbc59b71f69_%E5%85%BB%E7%94%9F%E7%B2%89%EF%BC%8C%E8%86%8F%E6%96%B9__0a6b77b46440d1de1f645ed93e74ca07.jpg',
   tea: {
-    '元气是四宝茶': 'https://fstc.kispace.cc/i/d879b15807a834cc9a7fc5e6fc05890f.jpg',
-    '胖大海润润饮': 'https://fstc.kispace.cc/i/2ac4a4c58ea1cd434a736fba8eb9832c.jpg',
-    '苹果四神汤': 'https://fstc.kispace.cc/i/b8a0a60ff3f09ce9640f42dfa1688621.jpg',
-    '雪梨玉竹百合茶': 'https://fstc.kispace.cc/i/4d08598aa3130be0d478abb012b6a322.jpg',
-    '苹果黄芪麦冬饮': 'https://fstc.kispace.cc/i/457b63405cb0ffb42473106c9ff24a05.jpg',
-    '石斛麦冬白茶饮': 'https://fstc.kispace.cc/i/2d31877769050eca7cb43018929ad9af.jpg',
-    '姜枣暖暖茶': 'https://fstc.kispace.cc/i/93dbf02ba408b389b85670260532cb1d.jpg',
-    '五指毛桃茯苓饮': 'https://fstc.kispace.cc/i/7ec5aa06a1338ca2dc128b23fbb13f25.jpg',
-    '金银花牛蒡饮': 'https://fstc.kispace.cc/i/4f894ad9779a5fc2a067a46986cade8e.jpg',
-    '山楂桑葚玫瑰饮': 'https://fstc.kispace.cc/i/03c322f5804227ec4bf2746e5e61923c.jpg',
-    '百合茯苓玫瑰饮': 'https://fstc.kispace.cc/i/9773e54f76d3fafb5222e18ffc1fdaf3.jpg',
-    '乌梅甘草桂花饮': 'https://fstc.kispace.cc/i/75bb4347b6b480d91734e8596a375ee1.jpg',
-    '私人定制纤纤饮': 'https://fstc.kispace.cc/i/a96e7d213f82aacfad896e4e8647bbb1.jpg',
+    '元气是四宝茶': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_b56ba0491aa542a7b6af082aabcca553_%E8%8C%B6%E5%8C%85__%E5%85%83%E6%B0%94%E6%98%AF%E5%9B%9B%E5%AE%9D%E8%8C%B6.jpg',
+    '胖大海润润饮': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_6214a4d8b5ce49d289826fd612716969_%E8%8C%B6%E5%8C%85__%E8%83%96%E5%A4%A7%E6%B5%B7%E6%B6%A6%E6%B6%A6%E9%A5%AE_.jpg',
+    '苹果四神汤': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_7ef85f0ff6344b2c9cb71b5a20032e5c_%E8%8C%B6%E5%8C%85__%E8%8B%B9%E6%9E%9C%E5%9B%9B%E7%A5%9E%E6%B1%A4_.jpg',
+    '雪梨玉竹百合茶': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_df1d8aa2f7ef461398821df833943be1_%E8%8C%B6%E5%8C%85__%E9%9B%AA%E6%A2%A8%E7%8E%89%E7%AB%B9%E7%99%BE%E5%90%88%E8%8C%B6.jpg',
+    '苹果黄芪麦冬饮': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_3819c11c871d46efa5d6feff50667139_%E8%8C%B6%E5%8C%85__%E8%8B%B9%E6%9E%9C%E9%BB%84%E8%8A%AA%E9%BA%A6%E5%86%AC%E9%A5%AE.jpg',
+    '石斛麦冬白茶饮': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_a22d056717aa447f8a3fc8c0a0b512af_%E8%8C%B6%E5%8C%85__%E7%9F%B3%E6%96%9B%E9%BA%A6%E5%86%AC%E7%99%BD%E8%8C%B6%E9%A5%AE.jpg',
+    '姜枣暖暖茶': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_96eb3c6298cc40e3b7c10b16e692bd3b_%E8%8C%B6%E5%8C%85__%E5%A7%9C%E6%9E%A3%E6%9A%96%E6%9A%96%E8%8C%B6.jpg',
+    '五指毛桃茯苓饮': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_7c0d8c1cdb784d6d8ce56d893b92e421_%E8%8C%B6%E5%8C%85__%E4%BA%94%E6%8C%87%E6%AF%9B%E6%A1%83%E8%8C%AF%E8%8B%93%E9%A5%AE.jpg',
+    '金银花牛蒡饮': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_783af57f79ea44c9964c2b201545233c_%E8%8C%B6%E5%8C%85__%E9%87%91%E9%93%B6%E8%8A%B1%E7%89%9B%E8%92%A1%E9%A5%AE.jpg',
+    '山楂桑葚玫瑰饮': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_19c455fb85384bb29828799d848a65b2_%E8%8C%B6%E5%8C%85__%E5%B1%B1%E6%A5%82%E6%A1%91%E8%91%9A%E7%8E%AB%E7%91%B0%E9%A5%AE.jpg',
+    '百合茯苓玫瑰饮': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_1561175b483e4ea79cb09d0b359f5c73_%E8%8C%B6%E5%8C%85__%E7%99%BE%E5%90%88%E8%8C%AF%E8%8B%93%E7%8E%AB%E7%91%B0%E9%A5%AE.jpg',
+    '乌梅甘草桂花饮': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_5c9ad6805d9344b78a1965f5f76842ae_%E8%8C%B6%E5%8C%85__%E4%B9%8C%E6%A2%85%E7%94%98%E8%8D%89%E6%A1%82%E8%8A%B1%E9%A5%AE.jpg',
+    '私人定制纤纤饮': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_30cadc3bd751437a82e0758247dc4362_%E8%8C%B6%E5%8C%85__%E7%A7%81%E4%BA%BA%E5%AE%9A%E5%88%B6%E7%BA%A4%E7%BA%A4%E9%A5%AE.jpg',
   },
   soup: {
-    '山药茯苓薏仁汤': 'https://fstc.kispace.cc/i/9555e3ef1c5f33ead3499c916afaa8a8.jpg',
-    '新四神汤': 'https://fstc.kispace.cc/i/24d364d9e86ea882277bfab61d7e1897.jpg',
-    '玉竹百合清补汤': 'https://fstc.kispace.cc/i/ec8ce1940b1e68044bda490111f71e49.jpg',
-    '五指毛桃茯苓汤': 'https://fstc.kispace.cc/i/95cf46990973d2bdcff843d2dec478ab.jpg',
-    '人参虫草花菌汤': 'https://fstc.kispace.cc/i/f9a361f91123bdad77bfc406d3c527ef.jpg',
-    '猴头菇无花果汤': 'https://fstc.kispace.cc/i/178f7c43f0a30cdf4965a6c744a2da0f.jpg',
-    '桑葚百合黄芪汤': 'https://fstc.kispace.cc/i/dfdf2b9e02d208b2d9af8450220c7d67.jpg',
-    '西洋参麦冬黄芪汤': 'https://fstc.kispace.cc/i/42eb1c3e5d5972c3e3cdd9250d74ea7f.jpg',
-    '铁皮石斛麦冬汤': 'https://fstc.kispace.cc/i/2ae9ba7f2e12055758561172db4c7d13.jpg',
-    '花胶虫草黄芪汤': 'https://fstc.kispace.cc/i/11e5fdae093f966a19489969151e671d.jpg',
+    '山药茯苓薏仁汤': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_74f4994a568642c2a3884b00096316fc_%E8%8D%AF%E8%86%B3__%E5%B1%B1%E8%8D%AF%E8%8C%AF%E8%8B%93%E8%96%8F%E4%BB%81%E6%B1%A4.jpg',
+    '新四神汤': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_ff76d66f8e164144b9c1e26dee364443_%E8%8D%AF%E8%86%B3__%E6%96%B0%E5%9B%9B%E7%A5%9E%E6%B1%A4_.jpg',
+    '玉竹百合清补汤': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_38d1e1691850478ab99a7cab1865beb1_%E8%8D%AF%E8%86%B3__%E7%8E%89%E7%AB%B9%E7%99%BE%E5%90%88%E6%B8%85%E8%A1%A5%E6%B1%A4_.jpg',
+    '五指毛桃茯苓汤': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_19b9dc737ede474cb6c89628d6a366b2_%E8%8D%AF%E8%86%B3__%E4%BA%94%E6%8C%87%E6%AF%9B%E6%A1%83%E8%8C%AF%E8%8B%93%E6%B1%A4.jpg',
+    '人参虫草花菌汤': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_72f8860972c643728205e26b7537c02e_%E8%8D%AF%E8%86%B3__%E4%BA%BA%E5%8F%82%E8%99%AB%E8%8D%89%E8%8A%B1%E8%8F%8C%E6%B1%A4.jpg',
+    '猴头菇无花果汤': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_4b9e0db3c1b5484282f0b06aeaa848d6_%E8%8D%AF%E8%86%B3__%E7%8C%B4%E5%A4%B4%E8%8F%87%E6%97%A0%E8%8A%B1%E6%9E%9C%E6%B1%A4.jpg',
+    '桑葚百合黄芪汤': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_e8aa37823b9e413cac55284cb9dc8d50_%E8%8D%AF%E8%86%B3__%E6%A1%91%E8%91%9A%E7%99%BE%E5%90%88%E9%BB%84%E8%8A%AA%E6%B1%A4.jpg',
+    '西洋参麦冬黄芪汤': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_d18e28455754420393715b4be7f02397_%E8%8D%AF%E8%86%B3__%E8%A5%BF%E6%B4%8B%E5%8F%82%E9%BA%A6%E5%86%AC%E9%BB%84%E8%8A%AA%E6%B1%A4.jpg',
+    '铁皮石斛麦冬汤': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_73d1f3191e1e42d893e07fdff575888b_%E8%8D%AF%E8%86%B3__%E9%93%81%E7%9A%AE%E7%9F%B3%E6%96%9B%E9%BA%A6%E5%86%AC%E6%B1%A4.jpg',
+    '花胶虫草黄芪汤': 'https://yaoshitongyuanzishou-1317479375.cos.ap-guangzhou.myqcloud.com/yaoshitongyuanzishou-1317479375/1/object_ef497c1c656043348b6793007bb87566_%E8%8D%AF%E8%86%B3__%E8%8A%B1%E8%83%B6%E8%99%AB%E8%8D%89%E9%BB%84%E8%8A%AA%E6%B1%A4_.jpg',
   },
 }
 
@@ -349,41 +347,6 @@ function SectionHeading({ eyebrow, title, desc }: { eyebrow: string; title: stri
 }
 
 export default function LandingPage() {
-  const navigate = useNavigate()
-  const { isAuthenticated, user, logout } = useAuth()
-
-  const handleLogout = async () => {
-    await logout()
-    navigate('/', { replace: true })
-  }
-
-  const userMenuItems = [
-    {
-      key: 'user',
-      icon: <User size={16} />,
-      label: (
-        <Flex vertical gap={2} style={{ minWidth: 160 }}>
-          <Typography.Text type="secondary">当前用户</Typography.Text>
-          <Typography.Text strong>{user?.username ?? '未登录'}</Typography.Text>
-        </Flex>
-      ),
-      disabled: true,
-    },
-    { type: 'divider' as const },
-    {
-      key: 'dashboard',
-      icon: <ShoppingBag size={16} />,
-      label: '进入工作台',
-      onClick: () => navigate('/dashboard'),
-    },
-    {
-      key: 'logout',
-      icon: <LogOut size={16} />,
-      label: '退出登录',
-      onClick: handleLogout,
-    },
-  ]
-
   return (
     <div className="min-h-screen bg-[#f7f6ef] text-[#243126]">
       <header className="fixed top-0 z-50 w-full border-b border-white/30 bg-[#fbfaf4]/90 backdrop-blur">
@@ -412,19 +375,6 @@ export default function LandingPage() {
               <MessageCircle size={16} />
               扫码购买
             </a>
-            {isAuthenticated ? (
-              <Dropdown menu={{ items: userMenuItems }} placement="bottomRight" arrow>
-                <Avatar style={{ background: '#2f5c43', cursor: 'pointer' }} icon={<User size={18} />} />
-              </Dropdown>
-            ) : (
-              <Button
-                size="small"
-                icon={<LogIn size={15} />}
-                onClick={() => navigate('/login')}
-              >
-                登录
-              </Button>
-            )}
           </div>
         </div>
       </header>
