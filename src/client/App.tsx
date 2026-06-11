@@ -13,6 +13,7 @@ import ResetPasswordPage from './pages/auth/ResetPasswordPage'
 import OAuthAuthorizePage from './pages/auth/OAuthAuthorizePage'
 import OAuthDeviceAuthorizePage from './pages/auth/OAuthDeviceAuthorizePage'
 import LandingPage from './pages/landing/LandingPage'
+import ProductDetailPage from './pages/landing/ProductDetailPage'
 import { AuthProvider, RequireAdmin, RequireAuth } from './providers/AuthProvider'
 import { RuntimeConfigProvider } from './providers/RuntimeConfigProvider'
 import ThemeToggle from './components/theme/ThemeToggle'
@@ -25,6 +26,7 @@ export default function App() {
           <>
             <Routes>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/products/:productName" element={<ProductDetailPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
