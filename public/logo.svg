@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="禾沐健康">
+  <rect width="64" height="64" rx="14" fill="#2f5c43"/>
+  <path d="M17 39c2.7 6.2 8.3 9.8 15 9.8s12.3-3.6 15-9.8H17Z" fill="#f8f1d8"/>
+  <path d="M20 35.2h24" fill="none" stroke="#f8f1d8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M32 34.2c-1.5-8 2.9-15 13.2-18.8 1.2 10.7-4 17.5-13.2 18.8Z" fill="#9fcf92"/>
+  <path d="M31.5 34.2c-7.7-1.2-12.2-6.7-12.1-15.8 8.7 2.2 13 8.1 12.1 15.8Z" fill="#d9b56d"/>
+  <path d="M32 18v25" fill="none" stroke="#f8f1d8" stroke-width="3.6" stroke-linecap="round"/>
+  <path d="M25 27.5h14" fill="none" stroke="#f8f1d8" stroke-width="3.2" stroke-linecap="round"/>
+  <circle cx="32" cy="32" r="27" fill="none" stroke="#f8f1d8" stroke-width="2" opacity=".42"/>
+</svg>

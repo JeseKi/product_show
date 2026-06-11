@@ -352,8 +352,8 @@ export default function LandingPage() {
       <header className="fixed top-0 z-50 w-full border-b border-white/30 bg-[#fbfaf4]/90 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <a href="#top" className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#2f5c43] text-white">
-              <LeafMark />
+            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#2f5c43] shadow-[0_8px_18px_rgba(47,92,67,0.22)]">
+              <BrandMark />
             </span>
             <span>
               <span className="block text-lg font-semibold tracking-tight">禾沐健康</span>
@@ -582,10 +582,16 @@ function ProductShelf({ title, products }: { title: string; products: Product[] 
   )
 }
 
-function LeafMark() {
+function BrandMark() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-current">
-      <path d="M19.8 4.2c-5.6.4-9.8 2.1-12.4 5.2-2.4 2.8-2.9 6.3-2.2 9.3 3 .7 6.5.2 9.3-2.2 3.1-2.6 4.8-6.8 5.3-12.3Zm-4.4 4.4c-2.8 1.5-5.1 3.7-6.8 6.5-.4.7-1.5.1-1.1-.7 1.8-3 4.4-5.5 7.4-7 .8-.4 1.3.8.5 1.2Z" />
+    <svg viewBox="0 0 64 64" aria-hidden="true" className="h-8 w-8">
+      <path d="M17 39c2.7 6.2 8.3 9.8 15 9.8s12.3-3.6 15-9.8H17Z" fill="#f8f1d8" />
+      <path d="M20 35.2h24" fill="none" stroke="#f8f1d8" strokeLinecap="round" strokeWidth="4" />
+      <path d="M32 34.2c-1.5-8 2.9-15 13.2-18.8 1.2 10.7-4 17.5-13.2 18.8Z" fill="#9fcf92" />
+      <path d="M31.5 34.2c-7.7-1.2-12.2-6.7-12.1-15.8 8.7 2.2 13 8.1 12.1 15.8Z" fill="#d9b56d" />
+      <path d="M32 18v25" fill="none" stroke="#f8f1d8" strokeLinecap="round" strokeWidth="3.6" />
+      <path d="M25 27.5h14" fill="none" stroke="#f8f1d8" strokeLinecap="round" strokeWidth="3.2" />
+      <circle cx="32" cy="32" r="27" fill="none" opacity=".42" stroke="#f8f1d8" strokeWidth="2" />
     </svg>
   )
 }
