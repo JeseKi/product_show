@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Image, Tag } from 'antd'
 import { ArrowLeft, MessageCircle } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
@@ -47,6 +48,10 @@ function relatedProducts(product: Product) {
 export default function ProductDetailPage() {
   const { productName } = useParams()
   const product = findProduct(productName)
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [productName])
 
   if (!product) {
     return (
