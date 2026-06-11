@@ -140,11 +140,11 @@ export function ProductsSection() {
         <SectionHeading
           eyebrow="商品目录"
           title="39 款产品完整展示"
-          desc="包含套餐、核心单品、中医特色茶包和中医药膳，所有价格与规格按现有表格录入。"
+          desc="包含套餐、核心单品、养生特色茶包和养生药膳，所有价格与规格按现有表格录入。"
         />
         <ProductShelf id="core-products" title="核心单品" products={coreProducts} />
-        <ProductShelf id="tea-products" title="中医特色茶包系列" products={teaProducts} />
-        <ProductShelf id="soup-products" title="中医药膳系列" products={soupProducts} />
+        <ProductShelf id="tea-products" title="养生特色茶包系列" products={teaProducts} />
+        <ProductShelf id="soup-products" title="养生药膳系列" products={soupProducts} />
       </div>
     </section>
   )

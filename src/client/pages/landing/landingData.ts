@@ -13,7 +13,7 @@ export const packages: PackageProduct[] = [
     note: '含四合一营养餐包 + 纤纤茶包 + 21天指导',
     image: imageUrls.slimKit,
     featured: true,
-    positioning: '医学营养 + 中医体质调理',
+    positioning: '医学营养 + 养生体质调理',
     content: '四合一综合营养膳食餐包 1盒，私人定制纤纤茶包 3盒',
     service: '营养师21天全程跟踪指导',
     audience: '超重人群、腰腹脂肪偏高、代谢下降、久坐办公',
@@ -29,7 +29,7 @@ export const packages: PackageProduct[] = [
     note: '含洗发皂 + 黄精芝麻丸 + 九制悦发膏',
     image: imageUrls.hairKit,
     featured: true,
-    positioning: '中医调理 + 生活方式指导',
+    positioning: '养生调理 + 生活方式指导',
     content: '中药手工洗发皂 1块，黄精芝麻丸 1罐，九制悦发膏 1瓶',
     service: '健康管理师生活方式指导',
     audience: '脱发困扰、发质干枯、熬夜人群、气血不足',
@@ -45,7 +45,7 @@ export const packages: PackageProduct[] = [
     note: '含晚安膏 + 酸枣仁粉 + 健管师指导',
     image: imageUrls.sleepKit,
     featured: true,
-    positioning: '中医调理 + 健康管理师指导',
+    positioning: '养生调理 + 健康管理师指导',
     content: '晚安膏 2瓶，酸枣仁百合茯苓桂圆粉 2罐',
     service: '健康管理师生活方式指导',
     audience: '入睡困难、易醒多梦、睡眠质量差、压力较大',
@@ -83,7 +83,7 @@ export const coreProducts: Product[] = [
   },
   {
     name: '私人定制纤纤茶包',
-    series: '中医特色茶包系列',
+    series: '养生特色茶包系列',
     type: '单品',
     spec: '盒（7袋/份）',
     price: '58',
@@ -185,7 +185,7 @@ export const teaProducts: Product[] = [
   ['私人定制纤纤饮', '68', '调节体重，促进代谢'],
 ].map(([name, price, benefit]) => ({
   name,
-  series: '中医特色茶包系列',
+  series: '养生特色茶包系列',
   type: '茶包',
   spec: '7袋/份',
   price,
@@ -207,7 +207,7 @@ export const soupProducts: Product[] = [
   ['花胶虫草黄芪汤', '38', '补气养血，滋润养颜'],
 ].map(([name, price, benefit]) => ({
   name,
-  series: '中医药膳系列',
+  series: '养生药膳系列',
   type: '药膳',
   spec: '独立包装',
   price,
@@ -222,8 +222,8 @@ export const featuredProducts = [...packages.slice(0, 3), ...coreProducts.filter
 export const categoryLinks: CategoryLink[] = [
   { id: 'packages', label: '疗程套餐', value: String(packages.length), desc: '350 ~ 2388 元/疗程' },
   { id: 'core-products', label: '核心单品', value: String(coreProducts.length), desc: '58 ~ 2180 元' },
-  { id: 'tea-products', label: '中医茶包', value: String(teaProducts.length), desc: '68 ~ 98 元/份' },
-  { id: 'soup-products', label: '中医药膳', value: String(soupProducts.length), desc: '18 ~ 38 元/包' },
+  { id: 'tea-products', label: '养生茶包', value: String(teaProducts.length), desc: '68 ~ 98 元/份' },
+  { id: 'soup-products', label: '养生药膳', value: String(soupProducts.length), desc: '18 ~ 38 元/包' },
 ]
 
 export const navItems = [
