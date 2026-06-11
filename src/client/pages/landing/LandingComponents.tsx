@@ -1,5 +1,6 @@
+import { type MouseEvent, useEffect, useState } from 'react'
 import { Image, Tag } from 'antd'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, ChevronLeft, ChevronRight, ListTree } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import type { CategoryLink, PackageProduct, Product } from './landingTypes'
 import { formatPrice, productPath } from './landingTypes'
@@ -36,6 +37,137 @@ export function CategoryNav({ categories }: { categories: CategoryLink[] }) {
         ))}
       </div>
     </section>
+  )
+}
+
+export function ProductCategorySidebar({ categories }: { categories: CategoryLink[] }) {
+  const [collapsed, setCollapsed] = useState(false)
+  const [activeId, setActiveId] = useState(categories[0]?.id ?? '')
+
+  useEffect(() => {
+    const initialId = window.location.hash.replace('#', '')
+
+    if (initialId && categories.some((category) => category.id === initialId)) {
+      setActiveId(initialId)
+    }
+  }, [categories])
+
+  useEffect(() => {
+    const sections = categories
+      .map((category) => document.getElementById(category.id))
+      .filter((section): section is HTMLElement => Boolean(section))
+
+    if (sections.length === 0) {
+      return undefined
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0]
+
+        if (visibleEntry?.target.id) {
+          setActiveId(visibleEntry.target.id)
+        }
+      },
+      {
+        rootMargin: '-112px 0px -58% 0px',
+        threshold: [0.12, 0.28],
+      },
+    )
+
+    sections.forEach((section) => observer.observe(section))
+
+    return () => observer.disconnect()
+  }, [categories])
+
+  const handleCategoryClick = (event: MouseEvent<HTMLAnchorElement>, categoryId: string) => {
+    const target = document.getElementById(categoryId)
+
+    if (!target) {
+      return
+    }
+
+    event.preventDefault()
+    setActiveId(categoryId)
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    window.history.replaceState(null, '', `#${categoryId}`)
+  }
+
+  return (
+    <aside
+      aria-label="商品分类导航"
+      className={`fixed left-2 top-20 z-40 max-h-[calc(100vh-6rem)] overflow-hidden rounded-lg border border-[#d9ded3] bg-white/95 text-[#243126] shadow-[0_18px_48px_rgba(35,47,39,0.18)] backdrop-blur transition-all duration-300 sm:left-4 ${
+        collapsed ? 'w-12' : 'w-44 sm:w-56'
+      }`}
+    >
+      <div className={`flex items-center border-b border-[#edf0ea] ${collapsed ? 'justify-center p-2' : 'justify-between gap-2 p-3'}`}>
+        {!collapsed && (
+          <div className="flex min-w-0 items-center gap-2">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[#2f5c43] text-white">
+              <ListTree size={17} />
+            </span>
+            <div className="min-w-0">
+              <div className="truncate text-sm font-semibold">商品分类</div>
+              <div className="truncate text-xs text-[#697568]">点击直达</div>
+            </div>
+          </div>
+        )}
+        <button
+          type="button"
+          aria-label={collapsed ? '展开商品分类侧栏' : '折叠商品分类侧栏'}
+          aria-expanded={!collapsed}
+          onClick={() => setCollapsed((current) => !current)}
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-[#d9ded3] bg-[#fbfaf4] text-[#556253] transition hover:border-[#b24d2b] hover:text-[#b24d2b]"
+        >
+          {collapsed ? <ChevronRight size={17} /> : <ChevronLeft size={17} />}
+        </button>
+      </div>
+
+      <nav className={`space-y-1 overflow-y-auto ${collapsed ? 'px-1.5 py-2' : 'p-2'}`}>
+        {categories.map((category) => {
+          const active = activeId === category.id
+
+          return (
+            <a
+              key={category.id}
+              href={`#${category.id}`}
+              aria-current={active ? 'true' : undefined}
+              title={collapsed ? category.label : undefined}
+              onClick={(event) => handleCategoryClick(event, category.id)}
+              className={`group flex min-h-11 items-center rounded-md border transition ${
+                collapsed
+                  ? 'justify-center px-1 py-2'
+                  : 'justify-between gap-3 px-3 py-2.5'
+              } ${
+                active
+                  ? 'border-[#2f5c43] bg-[#eef2e8] text-[#2f5c43]'
+                  : 'border-transparent text-[#556253] hover:border-[#e3e1d5] hover:bg-[#fbfaf4] hover:text-[#b24d2b]'
+              }`}
+            >
+              <span className={`min-w-0 ${collapsed ? 'text-center text-xs font-semibold leading-4' : ''}`}>
+                {collapsed ? category.label.slice(0, 2) : (
+                  <>
+                    <span className="block truncate text-sm font-semibold">{category.label}</span>
+                    <span className="mt-0.5 block truncate text-xs text-[#8a5c34]">{category.desc}</span>
+                  </>
+                )}
+              </span>
+              {!collapsed && (
+                <span
+                  className={`flex h-7 min-w-7 shrink-0 items-center justify-center rounded-full px-2 text-xs font-semibold ${
+                    active ? 'bg-[#2f5c43] text-white' : 'bg-[#eef2e8] text-[#2f5c43] group-hover:bg-[#f6e7d7]'
+                  }`}
+                >
+                  {category.value}
+                </span>
+              )}
+            </a>
+          )
+        })}
+      </nav>
+    </aside>
   )
 }
 
