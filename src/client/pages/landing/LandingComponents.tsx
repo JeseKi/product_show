@@ -192,6 +192,7 @@ export function ProductCard({ product }: { product: Product }) {
           <div className="shrink-0 text-right">
             <div className="text-xl font-bold text-[#b24d2b]">{formatPrice(product.price)}</div>
             <div className="text-xs text-[#72806f]">{product.spec}</div>
+            {product.weight && <div className="mt-1 text-xs text-[#8a5c34]">{product.weight}</div>}
           </div>
         </div>
         <p className="line-clamp-2 text-sm leading-6 text-[#5e695d]">{product.benefit}</p>

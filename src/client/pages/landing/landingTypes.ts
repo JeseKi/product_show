@@ -7,6 +7,7 @@ export type Product = {
   benefit: string
   packageName: string
   note?: string
+  weight?: string
   image: string
   featured?: boolean
 }

@@ -125,6 +125,7 @@ export default function ProductDetailPage() {
               <dl className="mt-6 grid gap-4 text-sm sm:grid-cols-2">
                 <Detail label="系列" value={product.series} />
                 <Detail label="规格" value={product.spec} />
+                {product.weight && <Detail label="克重" value={product.weight} />}
                 <Detail label="归属套餐" value={product.packageName || '单独咨询'} />
                 <Detail label="备注" value={product.note || '添加微信确认库存与用法'} />
               </dl>

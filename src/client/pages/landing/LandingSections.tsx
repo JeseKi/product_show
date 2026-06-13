@@ -154,8 +154,8 @@ export function QualitySection() {
   const metrics = [
     ['产品总计', `${allProducts.length} 款`],
     ['价格区间', '18 ~ 2388 元'],
-    ['茶包规格', '7袋/份'],
-    ['药膳规格', '独立包装'],
+    ['茶包规格', '7袋/份，25~40克/份'],
+    ['药膳规格', '独立包装，50~120克/包'],
   ]
   const cards = [
     { icon: <ShieldCheck size={22} />, title: '信息透明', desc: '价格、规格、适用场景集中展示。' },

@@ -1,6 +1,9 @@
 import { imageUrls, teaProductImages } from './landingAssets'
 import type { CategoryLink, PackageProduct, Product } from './landingTypes'
 
+const teaWeight = '25~40克/份'
+const soupWeight = '50~120克/包'
+
 export const packages: PackageProduct[] = [
   {
     name: '减脂套餐',
@@ -89,6 +92,7 @@ export const coreProducts: Product[] = [
     price: '58',
     benefit: '调节体重，促进代谢',
     packageName: '减脂套餐',
+    weight: teaWeight,
     image: teaProductImages['私人定制纤纤饮'],
     featured: true,
   },
@@ -191,6 +195,7 @@ export const teaProducts: Product[] = [
   price,
   benefit,
   packageName: name === '私人定制纤纤饮' ? '减脂套餐' : '单独销售',
+  weight: teaWeight,
   image: teaProductImages[name] ?? imageUrls.tea[name as keyof typeof imageUrls.tea] ?? imageUrls.teaPackage,
 }))
 
@@ -213,6 +218,7 @@ export const soupProducts: Product[] = [
   price,
   benefit,
   packageName: '单独销售',
+  weight: soupWeight,
   image: imageUrls.soup[name as keyof typeof imageUrls.soup],
 }))
 
