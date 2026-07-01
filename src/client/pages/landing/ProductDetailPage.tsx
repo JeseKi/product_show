@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { Image, Tag } from 'antd'
-import { ArrowLeft, MessageCircle } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
-import { imageUrls, qrCodeUrl, teaBagImages, teaProductImages } from './landingAssets'
+import { imageUrls, teaBagImages, teaProductImages } from './landingAssets'
 import { allProducts } from './landingData'
 import { BrandMark, ProductCard } from './LandingComponents'
 import type { Product } from './landingTypes'
@@ -129,25 +129,6 @@ export default function ProductDetailPage() {
                 <Detail label="归属套餐" value={product.packageName || '单独咨询'} />
                 <Detail label="备注" value={product.note || '添加微信确认库存与用法'} />
               </dl>
-              <div className="mt-6 grid gap-4 rounded-lg bg-[#f7f6ef] p-4 sm:grid-cols-[112px_1fr]">
-                <Image
-                  src={qrCodeUrl}
-                  alt="微信二维码"
-                  className="aspect-square rounded-md object-cover"
-                  preview={{ mask: '预览二维码' }}
-                  width="100%"
-                />
-                <div>
-                  <div className="font-semibold text-[#243126]">添加微信咨询购买</div>
-                  <p className="mt-2 text-sm leading-6 text-[#697568]">
-                    发送商品名称、数量和收货信息，确认后通过微信转账完成购买。
-                  </p>
-                  <a href="/#wechat" className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-[#b24d2b]">
-                    <MessageCircle size={16} />
-                    查看微信二维码
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
         </section>

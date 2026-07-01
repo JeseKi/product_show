@@ -1,6 +1,6 @@
 import { Tag } from 'antd'
 import { MessageCircle, Package, ShieldCheck, Sparkles, Utensils } from 'lucide-react'
-import { imageUrls, qrCodeUrl } from './landingAssets'
+import { imageUrls } from './landingAssets'
 import { categoryLinks, coreProducts, featuredProducts, navItems, packages, soupProducts, teaProducts, allProducts } from './landingData'
 import { BrandMark, CategoryNav, PackageCard, ProductCard, ProductShelf, SectionHeading } from './LandingComponents'
 
@@ -24,13 +24,6 @@ export function SiteHeader() {
             </a>
           ))}
         </nav>
-        <a
-          href="/#wechat"
-          className="hidden h-9 items-center gap-2 rounded-full bg-[#b24d2b] px-4 text-sm font-medium text-white transition hover:bg-[#923e23] sm:flex"
-        >
-          <MessageCircle size={16} />
-          扫码购买
-        </a>
       </div>
     </header>
   )
@@ -59,35 +52,11 @@ export function HeroSection() {
                 <Package size={17} />
                 查看套餐
               </a>
-              <a
-                href="#wechat"
-                className="inline-flex h-11 items-center gap-2 rounded-full bg-[#b24d2b] px-5 text-sm font-semibold text-white transition hover:bg-[#923e23]"
-              >
-                <MessageCircle size={17} />
-                加微信下单
-              </a>
             </div>
           </div>
-          <WechatCard />
         </div>
       </div>
     </section>
-  )
-}
-
-function WechatCard() {
-  return (
-    <div id="wechat" className="scroll-mt-24 rounded-lg border border-white/25 bg-white/94 p-4 shadow-[0_18px_50px_rgba(0,0,0,0.18)]">
-      <div className="grid grid-cols-[108px_1fr] items-center gap-4 sm:grid-cols-[132px_1fr] lg:block">
-        <img src={qrCodeUrl} alt="微信二维码" className="aspect-square w-full rounded-md object-cover lg:mx-auto lg:w-44" />
-        <div className="lg:mt-4 lg:text-center">
-          <div className="text-base font-semibold text-[#243126]">扫码添加微信购买</div>
-          <p className="mt-2 text-sm leading-6 text-[#697568]">
-            添加好友后确认商品、数量和收货信息，再通过微信转账完成购买。
-          </p>
-        </div>
-      </div>
-    </div>
   )
 }
 
